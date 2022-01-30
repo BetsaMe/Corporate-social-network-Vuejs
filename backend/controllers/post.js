@@ -21,7 +21,8 @@ exports.createPost=(req, res, next) =>{
     sequelize.Post.create({
       title: req.body.title,
       content: req.body.content,
-      userId: req.body.userId
+      userId: req.body.userId,
+      userName: req.body.userName
     }).then(post =>{
       res.json(post);
     }).catch(
@@ -56,7 +57,7 @@ exports.getOnePost=(req, res, next)=>{
 exports.modifyPost=(req, res, next)=>{
     sequelize.Post.update({
     title: req.body.title,
-    body: req.body.body
+    content: req.body.content
     }, {
     where: {
         id: req.params.id

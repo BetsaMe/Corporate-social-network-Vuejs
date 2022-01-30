@@ -3,12 +3,12 @@
       <Navbar/> 
       <div  class="row container-fluid mx-auto px-0">
           <div class="col-lg-8">
-            <form @submit.prevent="sendPost">
+            <form @submit.prevent="modifyPost">
                 <div class="headerFeed shadow-sm p-3 mt-3">
-                    <h3 class="m-0 pb-3">Créer une publication</h3>
+                    <h3 class="m-0 pb-3">Modifier ta publication</h3>
                     <div class="mb-3 ">
                         <label for="formTitle" class="form-label text-left ">Titre</label>
-                        <input v-model="newPost.title" type="title" class="form-control" id="formTitle" placeholder="">
+                        <input v-model="editedPost.title" type="title" class="form-control" id="formTitle" placeholder="">
                     </div>
                     <!-- <div class="mb-3">
                         <label for="formFile" class="form-label">Ajouter à votre publication</label>
@@ -16,10 +16,10 @@
                     </div> -->
                     <div class="mb-3">
                         <label for="formTextarea" class="form-label">Contenu</label>
-                        <textarea v-model="newPost.content" class="form-control" id="formContent" rows="3" placeholder=""></textarea>
+                        <textarea v-model="editedPost.content" class="form-control" id="formContent" rows="3" placeholder=""></textarea>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary">Publier</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </div>
                 </div> 
             </form>
@@ -45,7 +45,7 @@ import Popular from '@/components/Popular.vue'
 import Navbar from '@/components/Navbar.vue'
 
 export default {
-  name: 'CreatePost',
+  name: 'EditePost',
   components: {
     Popular,
     Navbar
@@ -53,11 +53,11 @@ export default {
   data(){
       return{
         userConnected: null,
-        newPost: {
+        postId:'',
+        editedPost: {
             title: "",
             content: "",
-            userId: null,
-            userName: null
+            userId: null
         },
           errors:[],
           validFormat: /^[a-zA-Z]{2,10}$/,
@@ -66,21 +66,21 @@ export default {
   },
   created: function(){
      this.userConnected= JSON.parse(sessionStorage.getItem("userInfo"))
+     this.postId = this.$route.params.postId;
   },
   methods:{
-      async sendPost(){
+      async modifyPost(){
         const token = this.userConnected.token
-        this.newPost.userId= this.userConnected.id
-        this.newPost.userName= this.userConnected.name
-        const response= await axios.post('http://localhost:3000/api/posts/', this.newPost,{
+        this.editedPost.userId= this.userConnected.id
+        const response= await axios.put('http://localhost:3000/api/posts/'+ this.postId , this.editedPost,{
             headers:{
                 Authorization: 'Bearer ' + token
             }
         });
-        console.log(response.data) // je n'obtien pas le name
+        console.log(response.data) 
+        alert("Post modifié");
         window.location.href = "http://localhost:8080/";              
-    }, 
-  }
-  
+    } 
+  }  
 }
 </script>

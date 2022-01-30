@@ -69,7 +69,6 @@ export default {
             this.userId=response.data.id
         },
         deleteUser(){
-            alert('boton')
             axios.delete("http://localhost:3000/api/auth/" + this.userId)
             .then((res) => {
                 console.log(res.data);
@@ -84,7 +83,7 @@ export default {
 
 
 
-<style scoped>
+<style>
 
 
 

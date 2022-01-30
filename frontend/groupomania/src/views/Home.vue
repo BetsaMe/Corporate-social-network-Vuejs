@@ -9,7 +9,7 @@
                     <div>
                         <button type="button" class="btn btn-dark border rounded-pill mx-1">Populaires</button>
                         <button type="button" class="btn border rounded-pill mx-1">News</button>
-                        <button type="button" class="btn border rounded-pill mx-1">Pour toi</button>                     
+                        <button type="button" class="btn border rounded-pill mx-1">Tes Publications</button>                     
                     </div>
                     <router-link class="btn btn btn-primary ml-4 px-4 rounded-pill btnPublication" to="/createPost">Publier</router-link>
                 </div> 

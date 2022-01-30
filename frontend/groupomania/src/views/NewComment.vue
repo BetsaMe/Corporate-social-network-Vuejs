@@ -9,10 +9,6 @@
                 </div>
                 <div class="cardStyle shadow-sm mt-3 p-4">   
                     <form @submit.prevent ="sendComment">
-                            <div class="mb-3">
-                            <label for="title" class="form-label">Titre</label>
-                            <input v-model="newComment.title" type="text" class="form-control" id="title">
-                        </div>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Commentaire</label>                           
                             <textarea v-model="newComment.content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -41,7 +37,6 @@ export default {
         title:'',
         content:'',
         newComment:{
-            title:'',
             content:'',
             userId:'',
             postId:''
@@ -73,7 +68,7 @@ export default {
                     Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
                 }
             });
-            console.log(response)            
+            console.log(response.data)            
         }
     }
 }
