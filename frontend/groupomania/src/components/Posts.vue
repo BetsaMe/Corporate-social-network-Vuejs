@@ -1,0 +1,119 @@
+<template>
+    <div>
+        <div v-for="post in posts" v-bind:key="post.title">
+            <div class="cardStyle shadow-sm mt-3 p-4">                
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p>Posted by: {{  }} </p>                        
+                    
+                    </div>  
+                    <p class="text-start mt-2">Titre: {{ post.title }}</p>
+                    <p class="text-start mt-2">Contenu: {{ post.content }} </p>
+                    <!-- <img class="photoPost" :src="image.source" :alt="image.alt"> -->
+                    <div class="bottomIcons d-flex mt-4 justify-content-between">
+                        <div>
+                            <a href=""><i class="fas fa-heart "></i></a><span>50</span>                            
+                            <a href=""><i class="fas fa-share-alt"></i></a><span>50</span>
+                        </div> 
+                        <a href=""><i class="fas fa-bookmark"></i></a> 
+                    </div>
+                    <router-link  :to="{name:'newComment', params:{postId:post.id}}">Commenter</router-link>
+                    <a href="" v-if="userConnected.id == post.userId" class="mx-3">Editer</a>
+                    <a @click.prevent="deletePost(post)" v-if="userConnected.id == post.userId" class="mx-3">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import axios from 'axios';
+export default {
+  name: 'Posts',
+  data(){
+      return{  
+        userConnected: null,   
+        posts:{},
+        newComment:{
+            title:'',
+            content:'',
+            userId:'',
+            postId:''
+        }
+      }
+  },
+    created: function(){
+     this.getPosts()
+     this.userConnected=JSON.parse(sessionStorage.getItem("userInfo"))
+  },
+  methods:{
+        async getPosts(){
+            const response = await axios.get('api/posts/',{
+                headers:{
+                    Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
+                }
+            });
+            console.log(response.data);
+            this.posts = response.data;
+        },
+        deletePost(post) {
+            axios.delete("/api/posts/" + post.id, {
+                 headers:{
+                    Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
+                }
+            })
+            .then((res) => {
+                console.log(res.data);
+                alert("Post effacé");
+                this.$router.go("/");
+            });
+        }
+        // editPost(post) {
+        //     axios.put("http://localhost:3000/api/posts/" + post.id, {
+        //         title: this.title,
+        //         content: this.content
+        //     })
+        //     .then((res) => {
+        //         console.log(res.data);
+        //         alert("Post effacé");
+        //         this.$router.go("/");
+        //     });
+        // },
+    }
+}
+</script>
+
+
+<style>
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+.date{
+    margin-left: 10px;
+}
+.roundPicture{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.bottomIcons a, .bottomIcons span{
+    margin-right: 8px;
+    color:black;
+}
+.bottomIcons span{
+    margin-right: 15px;;
+}
+.photoPost{
+    width: 100%;
+    max-height: 50vh;
+    object-fit: contain;
+}
+.fa-edit, .fa-comments{
+    margin-right: 10px;
+}
+
+
+</style>
