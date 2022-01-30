@@ -12,18 +12,18 @@
               </form>
               <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
               <a class="nav-link" aria-current="page" href="" @click="handleLogout" >Logout</a>
-              <div  class="dropdown text-end">
+              <div  class="dropdown">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="/images/profile.jpg" alt="imageprofil" width="32" height="32" class="rounded-circle">
+                  <img src="/images/iconuser.png" alt="imageprofil" width="32" height="32" class="rounded-circle">
                 </a>
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser1">
                   <li><router-link class="dropdown-item" :to="{ name: 'profile', params: { userId: userInfo.id }}">Profil</router-link></li>
                   <li><a class="dropdown-item" href="#">Configuration</a></li>
                   <li><a class="dropdown-item" href="#">Dark mode</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="" @click="handleLogout">Logout</a></li>
                 </ul>
-              </div>
+              </div>           
             </div> 
           </div>
         </nav>

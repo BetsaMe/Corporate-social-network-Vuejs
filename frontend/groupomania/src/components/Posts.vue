@@ -25,7 +25,7 @@
                             <button class="btn btn-link" @click="(postId = post.id), commentsByPost()">
                              Voir tous les commentaires
                             </button>
-                            <div  v-if="postId === post.id">
+                            <div  v-if="postId">
                                 <div class="comment d-flex justify-content-between align-items-center" v-for="comment in comments" v-bind:key="comment.title">
                                     <p class="">{{ comment.content}}</p>
                                     <div class="d-flex">
@@ -45,7 +45,7 @@ export default {
   name: 'Posts',
   data(){
       return{  
-        postId: {}, 
+        postId:{}, 
         comments:[] ,
         userConnected: null,   
         posts:{}
@@ -65,17 +65,15 @@ export default {
             console.log(response.data);
             this.posts = response.data;
         },
-        deletePost(post) {
-            axios.delete("/api/posts/" + post.id, {
+        async deletePost(post) {
+            const response = await axios.delete("/api/posts/" + post.id, {
                  headers:{
                     Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
                 }
-            })
-            .then((res) => {
-                console.log(res.data);
-                alert("Post effacé");
-                this.$router.go("/");
             });
+            console.log(response.data);
+            alert("Post effacé");
+            this.$router.go("/");
         },
         async commentsByPost(){
             let id = this.postId;
@@ -87,17 +85,15 @@ export default {
             console.log(response.data);
             this.comments= response.data;
         },
-        deleteComment(comment) {
-            axios.delete("/api/comments/" + comment.id, {
+        async deleteComment(comment) {
+            const response = await axios.delete("/api/comments/" + comment.id, {
                  headers:{
                     Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
                 }
-            })
-            .then((res) => {
-                console.log(res.data);
-                alert("Commentaire effacé");
-                this.$router.go("/");
-            });
+            })            
+            console.log(response.data);
+            alert("Commentaire effacé");
+            this.$router.go("/");            
         },
     }
 }
@@ -142,6 +138,13 @@ ul {
 }
  #comments{
      margin-top: 30px;
+     
+ }
+ .comment{
+     background-color: #F3F3F9;
+     padding: 10px;
+     border-radius: 8px;
+     margin-top: 10px;
  }
 .btnComment{
     margin-right:10px;

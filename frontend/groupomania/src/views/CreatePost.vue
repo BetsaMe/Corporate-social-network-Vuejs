@@ -56,28 +56,30 @@ export default {
         newPost: {
             title: "",
             content: "",
-            userId: null,
-            userName: null
+            userId: null
         },
-          errors:[],
-          validFormat: /^[a-zA-Z]{2,10}$/,
-          validFormatEmail: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
+        author:"",
+        errors:[],
+        validFormat: /^[a-zA-Z]{2,10}$/,
+        validFormatEmail: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
       }
   },
   created: function(){
      this.userConnected= JSON.parse(sessionStorage.getItem("userInfo"))
+     
+     sessionStorage.setItem("author", this.author);
   },
   methods:{
       async sendPost(){
         const token = this.userConnected.token
         this.newPost.userId= this.userConnected.id
-        this.newPost.userName= this.userConnected.name
         const response= await axios.post('http://localhost:3000/api/posts/', this.newPost,{
             headers:{
                 Authorization: 'Bearer ' + token
             }
         });
-        console.log(response.data) // je n'obtien pas le name
+        this.author = this.userConnected.name;
+        console.log(response.data) 
         window.location.href = "http://localhost:8080/";              
     }, 
   }

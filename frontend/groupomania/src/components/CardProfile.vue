@@ -58,7 +58,6 @@ export default {
   },
   methods:{
         async showUser(){
-            // const infoUser = JSON.parse(sessionStorage.getItem("userInfo"))
             const idUser= this.userConnected.id
             const response = await axios.get('http://localhost:3000/api/auth/' + idUser);
             console.log(response);

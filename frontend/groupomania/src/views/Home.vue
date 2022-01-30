@@ -30,7 +30,7 @@
         </div> 
     </div>  
     <div v-else >
-            <Welcome/> 
+        <Welcome/> 
     </div>   
   </div>   
 </template>

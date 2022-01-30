@@ -1,10 +1,12 @@
 <template>
-  <div id="editProfil" class="container-fluid">
-        <form class="row g-3 headerFeed shadow-sm p-3" @submit.prevent="checkForm">
+  <div id="editProfil" class="row container-fluid mx-auto px-0">
+    <div class="col-lg-8">
+        <form class="row g-3 headerFeed shadow-sm p-3 mt-3" @submit.prevent="checkForm">
             <div class=" d-flex flex-column  mt-3 justify-content-center align-items-center text-center">          
                 <img class="rounded-circle mt-5" src="/images/profile.jpg" width="150" height="150">
-                <h1 class="font-weight-bold">Information de compte</h1>            
+                <h2 class="font-weight-bold">Information de compte</h2>            
             </div>
+
             <!-- <div class="col-md-6">
                 <label for="validationDefaultUsername" class="form-label">Pseudo</label>
                 <div class="input-group">
@@ -30,6 +32,24 @@
               </ul>
             </div>
         </form>
+    </div>
+    <div class="col-lg-4 color mt-3">
+        <div class="populaires shadow-sm p-2">
+            <h4 class="text-center mt-3">Tes contacts préférés</h4> 
+            <div class="d-flex justify-content-start align-items-center my-3 mx-4">
+                <img class="roundPicture mr-2" src="/images/meme.jpg" alt="meme" text="Funny" btnname="suivre">
+                <span class="mx-4">Justine Marie</span>
+            </div> 
+            <div class="d-flex justify-content-d-flex justify-content-start  align-items-center my-3 mx-4">
+                <img class="roundPicture" src="/images/meme.jpg" alt="meme" text="Funny" btnname="suivre">
+                <span class="mx-4">Alexandre Marie</span>
+            </div> 
+            <div class="d-flex justify-content-d-flex justify-content-start  align-items-center my-3 mx-4">
+                <img class="roundPicture" src="/images/meme.jpg" alt="meme" text="Funny" btnname="suivre">
+                <span class="mx-4">Romain Marie</span>
+            </div> 
+        </div> 
+    </div> 
   </div>
 </template>
 
@@ -43,7 +63,7 @@ export default {
           firstName:'',
           lastName:'',
           errors:[],
-          validFormat: /^[a-zA-Z]{2,10}$/,
+          validFormat: /^[a-zA-Z]{2,20}$/,
           validFormatPass: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
       }
   },
@@ -51,13 +71,13 @@ export default {
       checkForm(){
         this.errors = [];   
         // if(!this.validText(this.pseudo)){
-        //    this.errors.push('Votre pseudo doit contenir entre 2 et 10 lettres');
+        //    this.errors.push('Votre pseudo doit contenir entre 2 et 20 lettres');
         // }
         if(!this.validText(this.firstName)){
-           this.errors.push('Votre prénom doit contenir entre 2 et 10 lettres');
+           this.errors.push('Votre prénom doit contenir entre 2 et 20 lettres');
         }
         if(!this.validText(this.lastName)){
-          this.errors.push('Votre nom doit contenir entre 2 et 10 lettres');
+          this.errors.push('Votre nom doit contenir entre 2 et 20 lettres');
         }
        if (!this.errors.length) {
           this.editUser();
@@ -73,7 +93,7 @@ export default {
                 firstName: this.firstName,
                 lastName: this.lastName
             });
-            // this.$router.push('/profile/:userId');            
+            this.$router.push('/profile/'+ infoUser.id);            
         }
     }
 }
