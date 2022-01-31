@@ -43,7 +43,6 @@ export default {
        });
         let userInfo= JSON.stringify(response.data);
         sessionStorage.setItem("userInfo", userInfo);
-        console.log(userInfo)
         this.$router.push('/');
       }
     }

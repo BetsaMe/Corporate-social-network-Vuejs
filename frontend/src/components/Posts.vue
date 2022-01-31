@@ -5,18 +5,22 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <p>Post id: {{ post.id }} </p> 
                         <div class="d-flex">
-                            <router-link v-if="userConnected.id == post.userId" :to="{name:'editPost', params:{postId:post.id}}"><i class="far fa-edit mr-4 logout"></i></router-link>
-                            <div @click="deletePost(post)" v-if="userConnected.id == post.userId || isAdmin == true"><i class="far fa-trash-alt logout"></i></div>
+                            <div v-if="userConnected.id == post.userId ">
+                                <router-link  :to="{name:'editPost', params:{postId:post.id}}"><i class="far fa-edit mr-4 logout"></i></router-link>
+                            </div>
+                            <div v-if="userConnected.id === post.userId || isAdmin === 'true' " >
+                                <div @click="deletePost(post)" ><i class="far fa-trash-alt logout"></i></div>
+                            </div>                            
                         </div> 
                     </div>  
                     <p class="text-start mt-2">Titre: {{ post.title }}</p>
                     <p class="text-start mt-2">Contenu: {{ post.content }} </p>
                     <!-- <img class="photoPost" :src="image.source" :alt="image.alt"> -->
-                    <div class="bottomIcons d-flex mt-4">
+                    <!-- <div class="bottomIcons d-flex mt-4">
                         <a href=""><i class="fas fa-heart "></i></a><span>50</span>                            
                         <a href=""><i class="fas fa-share-alt"></i></a><span>50</span>
                         <a href=""><i class="fas fa-bookmark"></i></a> 
-                    </div>
+                    </div> -->
                     <div id="comments">
                             <router-link class="btn btn-link btnComment logout" :to="{name:'newComment', params:{postId:post.id}}">Commenter</router-link>
                             <button class="btn btn-link logout" @click="(postId = post.id), commentsByPost()">
@@ -26,7 +30,7 @@
                                 <div class="comment d-flex justify-content-between align-items-center" v-for="comment in comments" v-bind:key="comment.title">
                                     <p class="">{{ comment.content}}</p>
                                     <div class="d-flex">
-                                        <div @click="deleteComment(comment)" v-if="userConnected.id == comment.userId || isAdmin== true"><i class="far fa-trash-alt"></i></div>
+                                        <div @click="deleteComment(comment)" v-if="userConnected.id == comment.userId || isAdmin== 'true' "><i class="far fa-trash-alt"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +50,7 @@ export default {
         comments:[] ,
         userConnected: null,   
         posts:{},
-        isAdmin:''
+        isAdmin: null
       }
   },
     created: function(){
