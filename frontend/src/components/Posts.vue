@@ -3,6 +3,7 @@
         <div v-for="post in posts" v-bind:key="post.title">
             <div class="cardStyle shadow-sm mt-3 p-4">                
                     <div class="d-flex justify-content-between align-items-center">
+                        <!-- //au lieu d'un id je voudrias afficher userName -->
                         <p>Post id: {{ post.id }} </p> 
                         <div class="d-flex">
                             <router-link v-if="userConnected.id == post.userId || isAdmin == true" :to="{name:'editPost', params:{postId:post.id}}"><i class="far fa-edit mr-4"></i></router-link>
@@ -59,7 +60,7 @@ export default {
   },
   methods:{
         async getPosts(){
-            const response = await axios.get('api/posts/',{
+            const response = await axios.get('http://localhost:3000/api/posts/',{
                 headers:{
                     Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
                 }
@@ -68,7 +69,7 @@ export default {
             this.posts = response.data;
         },
         async deletePost(post) {
-            const response = await axios.delete("/api/posts/" + post.id, {
+            const response = await axios.delete("http://localhost:3000//api/posts/" + post.id, {
                  headers:{
                     Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
                 }
@@ -79,7 +80,7 @@ export default {
         },
         async commentsByPost(){
             let id = this.postId;
-            const response = await axios.get('api/comments/'+ id + '/post' ,{
+            const response = await axios.get('http://localhost:3000/api/comments/'+ id + '/post' ,{
                 headers:{
                     Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
                 }
@@ -88,7 +89,7 @@ export default {
             this.comments= response.data;
         },
         async deleteComment(comment) {
-            const response = await axios.delete("/api/comments/" + comment.id, {
+            const response = await axios.delete("http://localhost:3000//api/comments/" + comment.id, {
                  headers:{
                     Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
                 }

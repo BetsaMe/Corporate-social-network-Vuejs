@@ -88,7 +88,7 @@ export default {
     },     
         async editUser(){           
             const infoUser = JSON.parse(sessionStorage.getItem("userInfo"))
-            await axios.put('/api/auth/' + infoUser.id,{
+            await axios.put('http://localhost:3000//api/auth/' + infoUser.id,{
                 // pseudo: this.pseudo,
                 firstName: this.firstName,
                 lastName: this.lastName
