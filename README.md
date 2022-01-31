@@ -1,5 +1,5 @@
 # Bienvenue sur Groupomania !
-![icongris](https://user-images.githubusercontent.com/72797333/151853995-2c3b555f-4c47-44ec-b1b7-204e7d0beb54.png)
+![logoreadme](https://user-images.githubusercontent.com/72797333/151855030-2450c990-cab0-48d0-9071-42b1b5f13c52.png)
 
 Le réseau social interne du group Groupomania. Cette application vous permet de créer un compte utilisateur, de vous connecter et de participer au forum interne de l'entreprise.
 
