@@ -1,8 +1,13 @@
 <template>
-    <main v-if="userConnected">  
+  <div>
+    <div v-if="userConnected">  
          <Navbar/>    
          <CardEditProfile/>  
-    </main>  
+    </div>  
+    <div v-else >
+        {{ this.$router.push("/") }} 
+    </div> 
+  </div>
 </template>
 
 <script>

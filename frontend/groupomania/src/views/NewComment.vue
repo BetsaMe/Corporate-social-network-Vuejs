@@ -1,5 +1,5 @@
 <template>
-        <div id="comment">
+        <div v-if="userConnected" >
             <Navbar/>
             <div class="row container-fluid mx-auto px-0">
                 <div class="col-lg-8">
@@ -28,6 +28,9 @@
  
             </div>
         </div>
+        <div v-else >
+            {{ this.$router.push("/") }} 
+        </div> 
 </template>
 
 

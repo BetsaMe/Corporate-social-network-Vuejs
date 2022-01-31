@@ -1,5 +1,5 @@
 <template>
-  <div>  
+  <div class="signup">  
       <form class="form-signin text-center" @submit.prevent="checkForm">
           <img class="mb-4" src="/images/icon-rec.png" alt="" width="72" >
           <h1 class="h3 mb-3 fw-normal">Signup</h1>
@@ -112,17 +112,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-      .form-signin{
-        width:100%;
-        max-width: 350px;
-        margin: auto;
-      }
-        .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
+      .signup{
+        margin-top:80px ;
       }
       .text-error{
         color: rgb(207, 16, 16);
@@ -130,9 +121,4 @@ export default {
         margin-top: 20px;
       }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
 </style>

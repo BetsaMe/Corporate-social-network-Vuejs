@@ -5,12 +5,12 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <p>Post id: {{ post.id }} </p> 
                         <div class="d-flex">
-                            <router-link v-if="userConnected.id == post.userId" :to="{name:'editPost', params:{postId:post.id}}"><i class="far fa-edit mr-4"></i></router-link>
-                            <div @click="deletePost(post)" v-if="userConnected.id == post.userId"><i class="far fa-trash-alt"></i></div>
+                            <router-link v-if="userConnected.id == post.userId || isAdmin == true" :to="{name:'editPost', params:{postId:post.id}}"><i class="far fa-edit mr-4"></i></router-link>
+                            <div @click="deletePost(post)" v-if="userConnected.id == post.userId || isAdmin == true"><i class="far fa-trash-alt"></i></div>
                         </div> 
                     </div>  
                     <p class="text-start mt-2">Titre: {{ post.title }}</p>
-                    <p class="text-start mt-2">Contenu: {{ post.content }} </p>rootro
+                    <p class="text-start mt-2">Contenu: {{ post.content }} </p>
                     <!-- <img class="photoPost" :src="image.source" :alt="image.alt"> -->
                     <div class="bottomIcons d-flex mt-4">
                         <a href=""><i class="fas fa-heart "></i></a><span>50</span>                            
@@ -25,11 +25,11 @@
                             <button class="btn btn-link" @click="(postId = post.id), commentsByPost()">
                              Voir tous les commentaires
                             </button>
-                            <div  v-if="postId">
+                            <div  v-if="postId === post.id">
                                 <div class="comment d-flex justify-content-between align-items-center" v-for="comment in comments" v-bind:key="comment.title">
                                     <p class="">{{ comment.content}}</p>
                                     <div class="d-flex">
-                                        <div @click="deleteComment(comment)" v-if="userConnected.id == comment.userId"><i class="far fa-trash-alt"></i></div>
+                                        <div @click="deleteComment(comment)" v-if="userConnected.id == comment.userId || isAdmin== true"><i class="far fa-trash-alt"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -48,12 +48,14 @@ export default {
         postId:{}, 
         comments:[] ,
         userConnected: null,   
-        posts:{}
+        posts:{},
+        isAdmin:''
       }
   },
     created: function(){
      this.getPosts()
-     this.userConnected=JSON.parse(sessionStorage.getItem("userInfo"))    
+     this.userConnected=JSON.parse(sessionStorage.getItem("userInfo")) 
+     this.isAdmin= sessionStorage.getItem('isAdmin')   
   },
   methods:{
         async getPosts(){

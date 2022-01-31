@@ -16,7 +16,7 @@
                     </div> -->
                     <div class="mb-3">
                         <label for="formTextarea" class="form-label">Contenu</label>
-                        <textarea v-model="newPost.content" class="form-control" id="formContent" rows="3" placeholder=""></textarea>
+                        <textarea v-model="newPost.content" class="form-control" id="formContent" rows="3" maxlength="250" placeholder="Ecrire ton commentaire"></textarea>
                     </div>
                     <div class="">
                         <button type="submit" class="btn btn-primary">Publier</button>
@@ -67,7 +67,6 @@ export default {
   created: function(){
      this.userConnected= JSON.parse(sessionStorage.getItem("userInfo"))
      
-     sessionStorage.setItem("author", this.author);
   },
   methods:{
       async sendPost(){
@@ -78,7 +77,6 @@ export default {
                 Authorization: 'Bearer ' + token
             }
         });
-        this.author = this.userConnected.name;
         console.log(response.data) 
         window.location.href = "http://localhost:8080/";              
     }, 

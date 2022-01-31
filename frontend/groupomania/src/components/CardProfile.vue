@@ -66,6 +66,9 @@ export default {
             this.lastName= response.data.lastName
             this.email= response.data.email
             this.userId=response.data.id
+            let isAdmin = JSON.stringify(response.data.isAdmin);
+            sessionStorage.setItem("isAdmin", isAdmin);
+            
         },
         deleteUser(){
             axios.delete("http://localhost:3000/api/auth/" + this.userId)

@@ -1,5 +1,5 @@
 <template>
-  <div>  
+  <div class="login">  
       <form class="form-signin text-center" @submit.prevent="handleSubmit">
           <img class="mb-4" src="/images/icon-rec.png" alt="" width="72">
           <h1 class="h3 mb-3 fw-normal">Login</h1>
@@ -27,13 +27,10 @@
 import axios from 'axios';
 export default {
   name: 'Login',
-  components: {
-    
-  },
   data(){
       return{
-          email: '',
-          password:''
+        email: '',
+        password:''
       }
   },
     methods:{
@@ -55,6 +52,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+      .login{
+        margin-top:150px ;
+      }
       .form-signin{
         width:100%;
         max-width: 350px;
@@ -67,7 +67,7 @@ export default {
         -moz-user-select: none;
         user-select: none;
       }
-
+    
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;

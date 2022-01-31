@@ -1,11 +1,9 @@
 <template>
-    <div class="container-fluid">
-        <!-- Outer Row -->
+    <div class="container-fluid welcome">
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-12 col-md-9">
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6 d-lg-block bg-login-image">
                                 <img class="welcomeImage" src="/images/welcome.jpg" alt="dog">
@@ -20,26 +18,23 @@
                                         <router-link class="btn btn btn-primary rounded-pill px-4 my-4" to="/signup">Signup</router-link> 
                                         <hr>
                                         <a href="#" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                            <i class="fab fa-google fa-fw"></i> Connectez-vous avec Google
                                         </a>
                                         <a href="#" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                            <i class="fab fa-facebook-f fa-fw"></i>Connectez-vous avec Facebook
                                         </a>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="#">Forgot Password?</a>
+                                        <a class="small" href="#">Mot de passe oublié?</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </template>
 
@@ -54,6 +49,9 @@ export default {
 .btn{
     width: 80%;
     margin: 0;
+}
+.welcome{
+    margin-top: 50px;
 }
 .welcomeImage{
     object-fit: contain;
