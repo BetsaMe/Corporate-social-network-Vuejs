@@ -13,7 +13,7 @@
                                 <label for="exampleFormControlTextarea1" class="form-label">Commentaire</label>                           
                                 <textarea v-model="newComment.content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-outline-secondary"><i class="fas fa-comments"></i>Commenter</button>
+                            <button type="submit" class="btn rounded-pill btnPublication"><i class="fas fa-comments"></i>Commenter</button>
                         </form>
                     </div>
                 </div>
@@ -24,8 +24,7 @@
                         <Popular src="/images/cats.jpg" alt="cats" text="Animaux" btnname="suivre"/>                    
                         <Popular src="/images/wtf.jpg" alt="wtf" text="Blagues" btnname="suivre"/>
                     </div> 
-                 </div>  
- 
+                 </div>   
             </div>
         </div>
         <div v-else >
@@ -61,29 +60,27 @@ export default {
   created: function(){
      this.userConnected= JSON.parse(sessionStorage.getItem("userInfo"))
      this.postId = this.$route.params.postId;
-     console.log(this.postId)
      this.getOnePost()
   },
   methods:{
         async getOnePost(){
-            const response = await axios.get('api/posts/'+ this.postId, {
+            const response = await axios.get('http://localhost:3000/api/posts/'+ this.postId, {
                 headers:{
                     Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
                 }
             });
-            console.log(response.data);
             this.title= response.data.title,
             this.content= response.data.content
         },
         async sendComment(){
             this.newComment.userId = this.userConnected.id
             this.newComment.postId = this.postId
-            const response= await axios.post('/api/comments/', this.newComment,{
+            await axios.post('http://localhost:3000/api/comments/', this.newComment,{
                 headers:{
                     Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
                 }
             });
-            console.log(response.data)  
+          
             window.location.href = "http://localhost:8080/";          
         }
     }

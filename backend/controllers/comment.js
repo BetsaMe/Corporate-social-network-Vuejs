@@ -3,6 +3,7 @@ const Post = require('../models/post');
 const User = require('../models/user');
 const sequelize = require("../models");
 
+// Chercher tous les commentaires
 exports.getAllComments = (req, res, next) => {
     sequelize.Comment.findAll().then(comments => {
         res.json(comments);
@@ -15,7 +16,7 @@ exports.getAllComments = (req, res, next) => {
     );
 };
 
-// CREATE
+// Création d'un commentaire
 exports.createComment=(req, res, next) =>{
     const post = sequelize.Post.findByPk(req.body.postId);
     const user = sequelize.User.findByPk(req.body.userId);
@@ -47,7 +48,7 @@ exports.createComment=(req, res, next) =>{
     })
 };
 
-// READ
+// Lire un commentaire
 
 exports.getOneComment=(req, res, next)=>{
     sequelize.Comment.findByPk(req.params.id).then(comment=>{
@@ -67,7 +68,7 @@ exports.getOneComment=(req, res, next)=>{
 
 
 
-// UPDATE
+// Modifier un commentaire
 
 exports.modifyComment=(req, res, next)=>{
     sequelize.Comment.update({
@@ -88,7 +89,7 @@ exports.modifyComment=(req, res, next)=>{
     )
 };
 
-// DELETE
+// Supprimer un commentaire
 
 exports.deleteComment=(req, res, next)=>{
     sequelize.Comment.destroy({

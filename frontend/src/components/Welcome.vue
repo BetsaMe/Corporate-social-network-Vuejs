@@ -14,8 +14,8 @@
                                         <h1 class="h4 text-gray-900 mb-4">Bienvenue au reseau Groupomania!</h1>
                                     </div>
                                     <form class="user text-center">
-                                        <router-link class=" btn btn btn-outline-primary rounded-pill px-4 mx-2 my-4" to="/login">Login</router-link>
-                                        <router-link class="btn btn btn-primary rounded-pill px-4 my-4" to="/signup">Signup</router-link> 
+                                        <router-link class=" btn rounded-pill px-4 mx-2 my-4 btnlogin" to="/login">Login</router-link>
+                                        <router-link class="btn rounded-pill px-4 my-4 btnsign" to="/signup">Signup</router-link> 
                                         <hr>
                                         <a href="#" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Connectez-vous avec Google
@@ -26,7 +26,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="#">Mot de passe oublié?</a>
+                                        <a class="small logout" href="#">Mot de passe oublié?</a>
                                     </div>
                                 </div>
                             </div>
@@ -45,10 +45,26 @@ export default {
 </script>
 
 
-<style scoped>
-.btn{
+<style>
+.btnlogin{
     width: 80%;
     margin: 0;
+    border: 1px solid #d14650;
+    color: #d14650;
+}
+.btnlogin:hover{
+    background-color: #d14650;
+    color: #fff;
+}
+.btnsign{
+    width: 80%;
+    margin: 0;
+    background-color: #d14650;
+    color: #fff;
+}
+.btnsign:hover{
+    background-color: #d55861;
+    color: #fff;
 }
 .welcome{
     margin-top: 50px;
@@ -57,4 +73,8 @@ export default {
     object-fit: contain;
     width: 100%;
 }
+hr{
+    color: #091f43;
+}
 </style>
+

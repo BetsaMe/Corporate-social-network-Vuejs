@@ -10,16 +10,12 @@
                         <label for="formTitle" class="form-label text-left ">Titre</label>
                         <input v-model="newPost.title" type="title" class="form-control" id="formTitle" placeholder="">
                     </div>
-                    <!-- <div class="mb-3">
-                        <label for="formFile" class="form-label">Ajouter à votre publication</label>
-                        <input class="form-control" type="file" id="formFile">
-                    </div> -->
                     <div class="mb-3">
                         <label for="formTextarea" class="form-label">Contenu</label>
                         <textarea v-model="newPost.content" class="form-control" id="formContent" rows="3" maxlength="250" placeholder="Ecrire ton commentaire"></textarea>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary">Publier</button>
+                        <button type="submit" class="btn btnPublication rounded-pill">Enregistrer</button>
                     </div>
                 </div> 
             </form>
@@ -58,10 +54,7 @@ export default {
             content: "",
             userId: null
         },
-        author:"",
-        errors:[],
-        validFormat: /^[a-zA-Z]{2,10}$/,
-        validFormatEmail: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
+        errors:[]
       }
   },
   created: function(){
@@ -69,18 +62,16 @@ export default {
      
   },
   methods:{
+      // création de la fonction de création de posts
       async sendPost(){
-        const token = this.userConnected.token
         this.newPost.userId= this.userConnected.id
-        const response= await axios.post('http://localhost:3000/api/posts/', this.newPost,{
+        await axios.post('http://localhost:3000/api/posts/', this.newPost,{
             headers:{
-                Authorization: 'Bearer ' + token
+                Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
             }
         });
-        console.log(response.data) 
         window.location.href = "http://localhost:8080/";              
-    }, 
-  }
-  
+    }
+  }  
 }
 </script>

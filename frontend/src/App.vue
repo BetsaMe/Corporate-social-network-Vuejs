@@ -13,7 +13,10 @@ export default {
     return{
       userConnected: sessionStorage.getItem("userToken"), 
     }
-  }
+  },
+  created () {
+            document.title = "Groupomania";
+        }
 }
 </script>
 

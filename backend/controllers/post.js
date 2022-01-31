@@ -1,7 +1,8 @@
 const Post = require('.././models')
 const User = require('../models/user');
 const sequelize = require("../models");
-// INDEX /api/post
+
+// HOME /Chercher tous les posts
 
 exports.getAllPosts = (req, res, next) => {
     sequelize.Post.findAll().then(posts => {
@@ -15,7 +16,7 @@ exports.getAllPosts = (req, res, next) => {
     );
 };
 
-// CREATE
+// Création d'un post
 
 exports.createPost=(req, res, next) =>{
     sequelize.Post.create({
@@ -34,7 +35,7 @@ exports.createPost=(req, res, next) =>{
   );
 };
 
-// READ
+// Lire un post
 
 exports.getOnePost=(req, res, next)=>{
     sequelize.Post.findByPk(req.params.id).then((post)=>{
@@ -52,7 +53,7 @@ exports.getOnePost=(req, res, next)=>{
   );
 };
 
-// UPDATE
+// Modifier un post
 
 exports.modifyPost=(req, res, next)=>{
     sequelize.Post.update({
@@ -73,7 +74,7 @@ exports.modifyPost=(req, res, next)=>{
   )
 };
 
-// DELETE
+// Supprimer un post
 
 exports.deletePost=(req, res, next)=>{
     sequelize.Post.destroy({

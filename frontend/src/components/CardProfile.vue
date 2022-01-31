@@ -10,29 +10,20 @@
                 <p>Prénom: {{ firstName }}</p>
                 <p>Nom: {{ lastName }}</p>  
                 <p>Email:{{ email }}</p> 
-                <router-link class="btn btn-outline-primary" :to="{name: 'editprofile', params: {userId: this.userConnected.id}} ">Editer ton profil</router-link>  
+                <router-link class="btn rounded-pill btnPublication" :to="{name: 'editprofile', params: {userId: this.userConnected.id}} ">Editer ton profil</router-link>  
             </div> 
             <div class="headerFeed d-flex flex-column shadow-sm mt-3 p-3 justify-content-center align-items-center text-center">          
                 <h2>Information de compte</h2>
                 <p>Date d'inscription : 31 août 2020</p>
-                <button @click="deleteUser"  class="btn btn-outline-danger">Supprimer ton compte</button>          
+                <button @click="deleteUser"  class="btn rounded-pill btn-outline-danger">Supprimer ton compte</button>          
             </div> 
         </div>
         <div class="col-lg-4 color mt-3">
-            <div class="populaires shadow-sm p-2">
-                <h4 class="text-center mt-3">Tes contacts préférés</h4> 
-                <div class="d-flex justify-content-start align-items-center my-3 mx-4">
-                    <img class="roundPicture mr-2" src="/images/meme.jpg" alt="meme" text="Funny" btnname="suivre">
-                    <span class="mx-4">Justine Marie</span>
-                </div> 
-                <div class="d-flex justify-content-d-flex justify-content-start  align-items-center my-3 mx-4">
-                    <img class="roundPicture" src="/images/meme.jpg" alt="meme" text="Funny" btnname="suivre">
-                    <span class="mx-4">Alexandre Marie</span>
-                </div> 
-                <div class="d-flex justify-content-d-flex justify-content-start  align-items-center my-3 mx-4">
-                    <img class="roundPicture" src="/images/meme.jpg" alt="meme" text="Funny" btnname="suivre">
-                    <span class="mx-4">Romain Marie</span>
-                </div> 
+                <div class="populaires shadow-sm p-2">
+                <h4 class="text-center">Tes contacts préférés</h4>                     
+                <Popular src="/images/prof2.jpg" alt="Justine" text="Justine" btnname="suivre"/>                    
+                <Popular src="/images/prof1.jpeg" alt="Alexandre" text="Alexandre" btnname="suivre"/>                    
+                <Popular src="/images/prof3.jpg" alt="Romain" text="Romain" btnname="suivre"/>
             </div> 
         </div>  
     </div> 
@@ -40,12 +31,15 @@
 
 <script>
 import axios from 'axios';
+import Popular from '@/components/Popular.vue'
 export default {
   name: 'CardProfile',
+  components: {
+    Popular   
+  },
   data(){
       return{
-          userConnected: null,  
-        //   pseudo: '',
+          userConnected: null,
           firstName:'',
           lastName:'',
           email:'',
@@ -57,26 +51,23 @@ export default {
     this.showUser()
   },
   methods:{
+        //création de la fonction pour l'affichage de profil utilisateur
         async showUser(){
             const idUser= this.userConnected.id
             const response = await axios.get('http://localhost:3000/api/auth/' + idUser);
-            console.log(response);
-            // this.pseudo= response.data.pseudo
+            
             this.firstName= response.data.firstName
             this.lastName= response.data.lastName
             this.email= response.data.email
             this.userId=response.data.id
             let isAdmin = JSON.stringify(response.data.isAdmin);
-            sessionStorage.setItem("isAdmin", isAdmin);
-            
+            sessionStorage.setItem("isAdmin", isAdmin);            
         },
-        deleteUser(){
-            axios.delete("http://localhost:3000/api/auth/" + this.userId)
-            .then((res) => {
-                console.log(res.data);
+        //création de la fonction pour supprimer le profil utilisateur
+        async deleteUser(){
+            await axios.delete("http://localhost:3000/api/auth/" + this.userId)            
                 this.$router.push("/");
-                sessionStorage.removeItem('userInfo');
-            });            
+                sessionStorage.removeItem('userInfo');                       
         }
     }
 }

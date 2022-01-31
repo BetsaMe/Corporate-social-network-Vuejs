@@ -50,7 +50,7 @@ exports.login = (req, res, next) => {
       .catch(error => res.status(500).json({ error }));
   };
 
-// UPDATE USER
+// MODIFICATION USER
 
 exports.modifyProfile=(req, res, next)=>{
     sequelize.User.update({
@@ -73,7 +73,7 @@ exports.modifyProfile=(req, res, next)=>{
 
 
 
-// GET USER
+// LIRE UN UTILISATEUR
 exports.getOneUser=(req, res, next)=>{
   sequelize.User.findByPk(req.params.id,
   ).then(user=>{
@@ -87,7 +87,7 @@ exports.getOneUser=(req, res, next)=>{
   );
 };
 
-// DELETE USER
+// SUPPRIMER UN UTILISATEUR
 
 exports.deleteUser=(req, res, next)=>{
   sequelize.User.destroy({

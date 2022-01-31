@@ -6,7 +6,7 @@
 
           <div class="form-floating">
             <input type="email" class="form-control" v-model="email" id="email" placeholder="email@example.com">
-            <label for="floatingInput">Addres email</label>
+            <label for="floatingInput">Adresse email</label>
           </div>
           <div class="form-floating">
             <input type="password" class="form-control" v-model="password" id="password" placeholder="mot de passe">
@@ -15,10 +15,10 @@
 
           <div class="checkbox mb-3">
             <label>
-              <input type="checkbox" value="remember-me"> Remember me
+              <input type="checkbox" value="remember-me"> Mémoriser vos informations
             </label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+          <button class="w-100 btn btn-lg btnsign" type="submit">Login</button>
       </form>    
   </div>  
 </template>
@@ -34,7 +34,7 @@ export default {
       }
   },
     methods:{
-      
+      // création de la fonction pour se connecter à l'application
       async handleSubmit(){  
 
        const response = await axios.post('http://localhost:3000/api/auth/login', {         
