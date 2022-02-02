@@ -42,7 +42,9 @@ export default {
             password: this.password
        });
         let userInfo= JSON.stringify(response.data);
+        let isAdmin= response.data.user.isAdmin;
         sessionStorage.setItem("userInfo", userInfo);
+        sessionStorage.setItem("isAdmin", isAdmin);
         this.$router.push('/');
       }
     }

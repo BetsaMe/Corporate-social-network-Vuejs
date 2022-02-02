@@ -8,7 +8,7 @@
                             <div v-if="userConnected.id == post.userId ">
                                 <router-link  :to="{name:'editPost', params:{postId:post.id}}"><i class="far fa-edit mr-4 logout"></i></router-link>
                             </div>
-                            <div v-if="userConnected.id === post.userId || isAdmin === 'true' " >
+                            <div v-if="userConnected.id === post.userId || isAdmin === true " >
                                 <div @click="deletePost(post)" ><i class="far fa-trash-alt logout"></i></div>
                             </div>                            
                         </div> 
@@ -30,7 +30,7 @@
                                 <div class="comment d-flex justify-content-between align-items-center" v-for="comment in comments" v-bind:key="comment.title">
                                     <p class="">{{ comment.content}}</p>
                                     <div class="d-flex">
-                                        <div @click="deleteComment(comment)" v-if="userConnected.id == comment.userId || isAdmin== 'true' "><i class="far fa-trash-alt"></i></div>
+                                        <div @click="deleteComment(comment)" v-if="userConnected.id == comment.userId || isAdmin== true"><i class="far fa-trash-alt"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -55,8 +55,9 @@ export default {
   },
     created: function(){
      this.getPosts()
-     this.userConnected=JSON.parse(sessionStorage.getItem("userInfo")) 
-     this.isAdmin= sessionStorage.getItem('isAdmin')   
+     this.userConnected= JSON.parse(sessionStorage.getItem("userInfo")) 
+     this.isAdmin= JSON.parse(sessionStorage.getItem('isAdmin'))
+     
   },
   methods:{
        //création de la fonction pour l'affichage de posts sur la page home

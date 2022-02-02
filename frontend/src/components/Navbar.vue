@@ -49,6 +49,8 @@ export default {
     methods:{
     handleLogout(){
       sessionStorage.removeItem("userInfo");
+      sessionStorage.removeItem("isAdmin");
+
       this.$router.push('/');
     }
   }
