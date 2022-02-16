@@ -6,10 +6,10 @@
            
             <div class="col-lg-8">
                 <div class="headerFeed d-flex shadow-sm mt-3 p-3 justify-content-between feed">
-                    <div>
-                        <button type="button" class="btn rounded-pill mx-1 btnPopulaire1">Populaires</button>
-                        <button type="button" class="btn rounded-pill mx-1 btnPopulaire">News</button>
-                        <button type="button" class="btn rounded-pill mx-1 btnPopulaire">Tes Publications</button>                     
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn rounded-pill mx-1 btn-sm btnPopulaire1">Populaires</button>
+                        <button type="button" class="btn rounded-pill mx-1 btn-sm btnPopulaire">News</button>
+                        <button type="button" class="btn rounded-pill mx-1 btn-sm btnPopulaire">Tes Posts</button>                     
                     </div>
                     <router-link class="btn btn ml-4 px-4 rounded-pill btnPublication mainbutton" to="/createPost">Publier</router-link>
                 </div> 
@@ -93,6 +93,7 @@ nav{
 }
 .btnPublication{
     width: 30%;
+    min-width: 190px;
     height: 40px;
     background-color: #d14650;
     color: #fff;
@@ -112,9 +113,7 @@ nav{
 .btnPopulaire1:hover{
     color: #fff;
 }
-.mainbutton{
-    min-width: 250px;
-}
+
 @media only screen and (max-width: 1024px){
     .container-fluid{
         width: 100%;
@@ -132,6 +131,7 @@ nav{
     }  
     .mainbutton{
         margin-top: 10px;
+        width: 100%;
     }  
 }
 

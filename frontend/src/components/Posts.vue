@@ -14,8 +14,9 @@
                         </div> 
                     </div>  
                     <p class="text-start mt-2">Titre: {{ post.title }}</p>
-                    <p class="text-start mt-2">Description: {{ post.content }} </p>
                     <img class="photoPost" :src= post.image  alt="image">
+                    <p class="text-start mt-2">Description: {{ post.content }} </p>
+                    
                     <div class="bottomIcons d-flex mt-4">
                         <a href=""><i class="fas fa-heart "></i></a><span>50</span>                            
                         <a href=""><i class="fas fa-share-alt"></i></a><span>50</span>

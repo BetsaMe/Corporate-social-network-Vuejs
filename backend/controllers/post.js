@@ -90,7 +90,7 @@ exports.modifyPost=(req, res, next)=>{
 };
 
 
-
+// Supprimer un post
 exports.deletePost = (req, res) => {
   sequelize.Post.findOne({ where: { id: req.params.id}})
   .then(post => {
