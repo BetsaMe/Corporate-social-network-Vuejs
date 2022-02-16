@@ -87,8 +87,9 @@ exports.getOneUser=(req, res, next)=>{
   );
 };
 
-// SUPPRIMER UN UTILISATEUR
 
+
+// SUPPRIMER UN UTILISATEUR
 exports.deleteUser=(req, res, next)=>{
   sequelize.User.destroy({
     where: {

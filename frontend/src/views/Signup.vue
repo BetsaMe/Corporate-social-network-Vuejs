@@ -61,7 +61,7 @@ export default {
   methods:{    
      // création de la fonction pour la création du compte utilisateur
       async handleSubmit(){
-        const response= await axios.post('http://localhost:3000/api/auth/signup', {
+        await axios.post('http://localhost:3000/api/auth/signup', {
               pseudo: this.pseudo,
               firstName: this.firstName,
               lastName: this.lastName,
@@ -69,7 +69,6 @@ export default {
               password: this.password  
         });
         this.$router.push('/login');
-        console.log(response)
                 
       }, 
       // vérification des input utilisateur

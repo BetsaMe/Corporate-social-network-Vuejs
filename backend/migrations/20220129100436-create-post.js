@@ -2,6 +2,9 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Posts', {
+      image:{
+        type: Sequelize.STRING
+      },
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,6 +16,9 @@ module.exports = {
       },
       content: {
         type: Sequelize.TEXT
+      },
+      authorName: {
+        type: Sequelize.STRING
       },
       userId: {
         type: Sequelize.INTEGER,

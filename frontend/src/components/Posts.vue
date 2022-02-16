@@ -3,7 +3,7 @@
         <div v-for="post in posts" v-bind:key="post.title">
             <div class="cardStyle shadow-sm mt-3 p-4">                
                     <div class="d-flex justify-content-between align-items-center">
-                        <p>Post id: {{ post.id }} </p> 
+                        <p>Auteur: {{ post.authorName }} </p> 
                         <div class="d-flex">
                             <div v-if="userConnected.id == post.userId ">
                                 <router-link  :to="{name:'editPost', params:{postId:post.id}}"><i class="far fa-edit mr-4 logout"></i></router-link>
@@ -14,13 +14,13 @@
                         </div> 
                     </div>  
                     <p class="text-start mt-2">Titre: {{ post.title }}</p>
-                    <p class="text-start mt-2">Contenu: {{ post.content }} </p>
-                    <!-- <img class="photoPost" :src="image.source" :alt="image.alt"> -->
-                    <!-- <div class="bottomIcons d-flex mt-4">
+                    <p class="text-start mt-2">Description: {{ post.content }} </p>
+                    <img class="photoPost" :src= post.image  alt="image">
+                    <div class="bottomIcons d-flex mt-4">
                         <a href=""><i class="fas fa-heart "></i></a><span>50</span>                            
                         <a href=""><i class="fas fa-share-alt"></i></a><span>50</span>
                         <a href=""><i class="fas fa-bookmark"></i></a> 
-                    </div> -->
+                    </div>
                     <div id="comments">
                             <router-link class="btn btn-link btnComment logout" :to="{name:'newComment', params:{postId:post.id}}">Commenter</router-link>
                             <button class="btn btn-link logout" @click="(postId = post.id), commentsByPost()">
@@ -28,7 +28,11 @@
                             </button>
                             <div  v-if="postId === post.id">
                                 <div class="comment d-flex justify-content-between align-items-center" v-for="comment in comments" v-bind:key="comment.title">
-                                    <p class="">{{ comment.content}}</p>
+                                    <div class="d-flex">
+                                        <span class="mx-3">Auteur id:{{ comment.userId}}</span>
+                                        <p>{{ comment.content}}</p>
+                                    </div>
+                                    
                                     <div class="d-flex">
                                         <div @click="deleteComment(comment)" v-if="userConnected.id == comment.userId || isAdmin== true"><i class="far fa-trash-alt"></i></div>
                                     </div>
@@ -49,25 +53,25 @@ export default {
         postId:{}, 
         comments:[] ,
         userConnected: null,   
-        posts:{},
+        posts:[],
         isAdmin: null
       }
   },
-    created: function(){
+    created: function(){ 
      this.getPosts()
      this.userConnected= JSON.parse(sessionStorage.getItem("userInfo")) 
      this.isAdmin= JSON.parse(sessionStorage.getItem('isAdmin'))
      
   },
   methods:{
-       //création de la fonction pour l'affichage de posts sur la page home
+        //création de la fonction pour l'affichage de posts sur la page home
         async getPosts(){
             const response = await axios.get('http://localhost:3000/api/posts/',{
                 headers:{
                     Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem("userInfo")).token
                 }
             });
-            this.posts = response.data;
+            this.posts = response.data; 
         },
         //création de la fonction pour supprimer les posts
         async deletePost(post) {
@@ -98,7 +102,7 @@ export default {
             }); 
             alert("Commentaire effacé");
             this.$router.go("/");            
-        }
+        }   
     }
 }
 </script>
