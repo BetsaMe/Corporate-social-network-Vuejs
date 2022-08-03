@@ -7,7 +7,6 @@ import Profile from '../views/Profile.vue'
 import EditProfile from '../views/EditProfile.vue'
 import CreatePost from '../views/CreatePost.vue'
 import EditPost from '../views/EditPost.vue'
-import NewComment from '../views/NewComment.vue'
 
 Vue.use(VueRouter)
 
@@ -46,12 +45,6 @@ const routes = [
     path: '/editPost/:postId',
     name: 'editPost',
     component: EditPost
-  },
-
-  {
-    path: '/newComment/:postId',
-    name: 'newComment',
-    component: NewComment
   }
   
 ]

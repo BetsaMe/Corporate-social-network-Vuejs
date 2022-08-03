@@ -13,7 +13,7 @@ Le réseau social interne du group Groupomania. Cette application vous permet de
 ## Backend
 * Installez nodemon.
 * Run npm install.
-* Run npm start.
+* Run nodemon server
 
 ## Frontend
 * Installez Node.js.
@@ -25,7 +25,7 @@ Le réseau social interne du group Groupomania. Cette application vous permet de
 ## Technologies ou Langages utilisés ?
 * Database: MySQL.
 * Server: Node.js, Express, Sequelize.
-* Frontend: Vue.js, Sass.
+* Frontend: Vue.js.
 
 
 ## Auteur

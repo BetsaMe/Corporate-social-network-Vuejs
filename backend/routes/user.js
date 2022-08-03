@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router(); //permet de créer des routeurs séparés pour chaque route principale de votre application//
 
 const userCtrl = require('../controllers/user');
 
