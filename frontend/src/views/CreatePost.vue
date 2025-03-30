@@ -16,16 +16,7 @@
                 placeholder=""
               />
             </div>
-            <div class="mb-3">
-              <label for="image" class="form-label">Ajouter une image</label>
-              <input
-                class="form-control"
-                type="file"
-                id="image"
-                name="image"
-                ref="image"
-              />
-            </div>
+
             <div class="mb-3">
               <label for="formTextarea" class="form-label">Description</label>
               <textarea
@@ -37,6 +28,16 @@
                 placeholder="Ecrire ton commentaire"
               ></textarea>
             </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Ajouter une image</label>
+              <input
+                class="form-control"
+                type="file"
+                id="image"
+                name="image"
+                ref="image"
+              />
+            </div>
             <div class="">
               <button type="submit" class="btn ml-4 px-4 btn-orange">
                 Enregistrer
@@ -47,7 +48,7 @@
       </div>
       <div class="col-lg-4 color mt-3">
         <div class="populaires shadow-sm p-2">
-          <h4 class="text-center">Les + populaires</h4>
+          <h4 class="text-center">Les plus populaires de la semaine</h4>
           <Popular
             src="/images/meme.jpg"
             alt="meme"
@@ -55,7 +56,7 @@
             btnname="suivre"
           />
           <Popular
-            src="/images/cats.jpg"
+            src="/images/cat.png"
             alt="cats"
             text="Animaux"
             btnname="suivre"

@@ -36,7 +36,7 @@ server.listen(port, () =>{
   console.log('Server is listening on port'+" "+ port)
 
   // Conection à la bdd
-  sequelize.sync({force: false}).then(()=>{
+  sequelize.sync({alter: true}).then(()=>{
     console.log('Connection to bdd successfull')
   }).catch(error =>{
     console.log('an error has occurred', error)

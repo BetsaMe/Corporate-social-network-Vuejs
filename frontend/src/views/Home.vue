@@ -8,20 +8,14 @@
             class="headerFeed d-flex shadow-sm mt-3 p-3 justify-content-between feed"
           >
             <div class="d-flex align-items-center">
-              <button type="button" class="btn rounded-pill mx-1 btn-sm btn-blue-outline">
-                Populaires
-              </button>
-              <button type="button" class="btn rounded-pill mx-1 btn-sm btn-blue-outline">
-                News
-              </button>
-              <button type="button" class="btn rounded-pill mx-1 btn-sm btn-blue-outline">
-                Tes Posts
-              </button>
+              <FilterBtn text="Populaires" />
+              <FilterBtn text="News" />
+              <FilterBtn text="Tes publications" />
             </div>
             <router-link
-              class="btn btn ml-4 px-4 btnPublication btn-orange"
+              class="btn ml-4 px-4 btnPublication btn-orange"
               to="/createPost"
-              >
+            >
               Publier
             </router-link>
           </div>
@@ -40,7 +34,7 @@
               btnname="Suivre"
             />
             <Popular
-              src="/images/cats.jpg"
+              src="/images/cat.png"
               alt="cats"
               text="Animaux"
               btnname="Suivre"
@@ -67,6 +61,7 @@ import Posts from "@/components/Posts.vue";
 import Popular from "@/components/Popular.vue";
 import Welcome from "@/components/Welcome.vue";
 import Navbar from "@/components/Navbar.vue";
+import FilterBtn from "../components/FilterBtn.vue";
 
 export default {
   name: "Home",
@@ -75,6 +70,7 @@ export default {
     Popular,
     Welcome,
     Navbar,
+    FilterBtn,
   },
   data() {
     return {
@@ -116,7 +112,7 @@ nav {
 .cardStyle .photoPost {
   width: 100%;
   height: 50vh;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 @media only screen and (max-width: 1024px) {
