@@ -4,7 +4,7 @@
 Le réseau social interne du group Groupomania. Cette application vous permet de créer un compte utilisateur, de vous connecter et de participer au forum interne de l'entreprise.
 
 ## Link App sur Netlify + Render
-* [Clonez le repository](https://grupomaniapp.netlify.app/)
+* (https://grupomaniapp.netlify.app/)
 
 ## Comment utiliser l'application
 * Clonez le repository
